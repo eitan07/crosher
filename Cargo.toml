@@ -1,0 +1,8 @@
+[package]
+name = "winhash"
+version = "0.1.0"
+edition = "2021"
+authors = ["Eitan Schwartz"]
+
+[dependencies]
+sha2 = "0.10.8"
