@@ -1,0 +1,6 @@
+USAGE: winhash <SUBCOMMAND> <FILE>
+Print or check SHA256 checksums.
+
+Subcommands:
+  hash, hashfile          Hash file using the SHA256 algorithm
+  help                    Print this help page

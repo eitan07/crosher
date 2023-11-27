@@ -1,4 +1,4 @@
-use std::{ env, fs };
+use std::{env, fs};
 use winhash::hash_operations;
 
 fn main() {
@@ -20,8 +20,13 @@ fn main() {
             println!("{}  {}", hash_str, file_path);
         }
 
+        "help" => display_help(),
+
         _ => display_help(),
     }
 }
 
-fn display_help() {}
+fn display_help() {
+    let help_page = include_str!("../resources/help_page.txt");
+    println!("{}", help_page)
+}

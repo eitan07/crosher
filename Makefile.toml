@@ -1,0 +1,39 @@
+[tasks.format]
+command = "cargo"
+args = ["fmt", "--all", "--", "--color=always"]
+
+[tasks.format-check]
+command = "cargo"
+args = ["fmt", "--all", "--check", "--", "--color=always"]
+
+[tasks.expand]
+command = "cargo"
+args = ["expand", "--bin", "winhash"]
+
+[tasks.clean]
+command = "cargo"
+args = ["clean"]
+
+[tasks.check]
+command = "cargo"
+args = ["check"]
+dependencies = ["clean"]
+
+[tasks.build]
+command = "cargo"
+args = ["build"]
+dependencies = ["format", "clean"]
+
+[tasks.run]
+command = "cargo"
+args = ["run"]
+dependencies = ["format", "clean"]
+
+[tasks.test]
+command = "cargo"
+args = ["test"]
+
+[tasks.watch]
+command = "cargo"
+args = ["watch", "-cqw", "src/", "-x", "run"]
+dependencies = ["format", "clean"]
