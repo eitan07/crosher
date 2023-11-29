@@ -27,7 +27,13 @@ dependencies = ["format", "clean"]
 [tasks.run]
 command = "cargo"
 args = ["run"]
-dependencies = ["format", "clean"]
+env = {RUST_BACKTRACE =  "0"}
+dependencies = ["format"]
+
+[tasks.run_st]
+command = "cargo"
+args = ["run"]
+dependencies = ["format"]
 
 [tasks.test]
 command = "cargo"

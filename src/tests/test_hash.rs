@@ -1,9 +1,9 @@
 #![cfg(test)]
 
+use crosher::hash_operations::hash_sha256;
 use std::env::consts;
 use std::process::Command;
 use std::{fs, io::Write};
-use crosher::hash_operations::hash_sha256;
 
 #[test]
 fn hash_file_and_test() {
@@ -17,13 +17,17 @@ fn hash_file_and_test() {
             .into_string()
             .expect("Failed to convert to UTF-8 String");
 
-        if file.file_type().unwrap().is_file() {
+        if file
+            .file_type()
+            .expect("Can't retrieve file type.")
+            .is_file()
+        {
             if !file_name.contains(".sha256") {
                 output_file
                     .write(
                         format!(
                             "{}  {}\n",
-                            hash_sha256(&fs::read(&file_name).unwrap())
+                            hash_sha256(&fs::read(&file_name).expect("Can't read file."))
                                 .iter()
                                 .map(|val| format!("{:02x}", val))
                                 .collect::<String>(),
