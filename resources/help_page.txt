@@ -1,4 +1,4 @@
-USAGE: winhash <SUBCOMMAND> <FILE>
+USAGE: crosher <SUBCOMMAND> <FILE>
 Print or check SHA256 checksums.
 
 Subcommands:

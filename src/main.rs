@@ -1,5 +1,5 @@
 use std::{env, fs};
-use winhash::hash_operations;
+use crosher::hash_operations;
 
 fn main() {
     let args: Vec<String> = env::args().collect();

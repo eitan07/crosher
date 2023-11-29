@@ -3,7 +3,7 @@
 use std::env::consts;
 use std::process::Command;
 use std::{fs, io::Write};
-use winhash::hash_operations::hash_sha256;
+use crosher::hash_operations::hash_sha256;
 
 #[test]
 fn hash_file_and_test() {

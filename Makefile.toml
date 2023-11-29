@@ -8,7 +8,7 @@ args = ["fmt", "--all", "--check", "--", "--color=always"]
 
 [tasks.expand]
 command = "cargo"
-args = ["expand", "--bin", "winhash"]
+args = ["expand", "--bin", "croshash"]
 
 [tasks.clean]
 command = "cargo"
