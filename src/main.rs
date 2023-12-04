@@ -8,13 +8,9 @@ fn main() {
         display_help(Some(1));
     }
 
-    match args
-        .get(1)
-        .unwrap_or_else(|| display_help(Some(1)))
-        .as_str()
-    {
+    match args.get(1).unwrap().as_str() {
         "hashfile" | "hash" if args.len() == 3 => {
-            let file_path = args.get(2).unwrap_or_else(|| display_help(Some(1)));
+            let file_path = args.get(2).unwrap();
             let buffer: Vec<u8> = fs::read(file_path).expect("Can't read file.");
             let hash: [u8; 32] = hash_operations::hash_sha256(&buffer);
             let mut hash_str = String::new();
@@ -24,11 +20,7 @@ fn main() {
             println!(
                 "{}  {}",
                 hash_str,
-                Path::new(file_path)
-                    .file_name()
-                    .unwrap_or(&OsStr::new(file_path))
-                    .to_str()
-                    .unwrap_or(file_path)
+                Path::new(file_path).file_name().unwrap().to_str().unwrap()
             );
         }
 
