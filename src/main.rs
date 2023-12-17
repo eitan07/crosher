@@ -1,11 +1,11 @@
-use crosher::hash_operations;
-use std::{env, ffi::OsStr, fs, path::Path, process};
+use crosher::{hash_operations, CrosherError};
+use std::{env, fs, path::Path, error::Error};
 
-fn main() {
+fn main() -> Result<(), Box<dyn Error>> {
     let args: Vec<String> = env::args().collect();
 
     if args.len() < 3 {
-        display_help(Some(1));
+        return Err(Box::new(CrosherError::InvalidParameters))
     }
 
     match args.get(1).unwrap().as_str() {
@@ -24,23 +24,14 @@ fn main() {
             );
         }
 
-        "help" => display_help(Some(0)),
+        "help" => display_help(),
 
-        _ => display_help(Some(1)),
-    }
+        _ => return Err(Box::new(CrosherError::InvalidParameters)),
+    };
+    Ok(())
 }
 
-fn display_help(reason: Option<u8>) -> ! {
+fn display_help() {
     let help_page = include_str!("../resources/help_page.txt");
-
-    let exit_code = match reason {
-        Some(1) => {
-            println!("Invalid subcommand or file!\n");
-            127
-        }
-        _ => 0,
-    };
-
-    println!("{}", help_page);
-    process::exit(exit_code)
+    println!("{}", help_page)
 }
